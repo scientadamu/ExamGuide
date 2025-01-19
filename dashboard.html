@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NewGate Dashboard</title>
+   <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    
+    <div class="sidebar">
+        <h2>NewGate Dashboard</h2>
+        <a href="#" onclick="loadSection('home')">Home</a>
+        <a href="#" onclick="loadSection('courses')">Courses</a>
+        <a href="#" onclick="loadSection('materials')">Materials</a>
+        <a href="#" onclick="loadSection('questions')">Questions</a>
+        <a href="#" onclick="loadSection('settings')">Settings</a>
+        <a href="#" onclick="logout()">Logout</a>
+    </div>
+
+    <div class="dashboard">
+        <div class="header">
+            <h1>Welcome to NewGate Dashboard</h1>
+            <p>Explore your courses, topics, and materials.</p>
+        </div>
+        <div id="content" class="content">
+            <!-- Dynamic content will be loaded here -->
+        </div>
+        <footer>&copy; 2025 NewGate University Minna. All Rights Reserved.</footer>
+    </div>
+
+    <script>
+            // Toggle Sidebar Visibility on Mobile
+function toggleSidebar() {
+    const sidebar = document.querySelector('.sidebar');
+    const hamburgerMenu = document.querySelector('.hamburger-menu');
+    
+    sidebar.classList.toggle('open');
+    hamburgerMenu.classList.toggle('open');
+}
+
+      function loadMaterials() {
+    const content = document.getElementById("content");
+    let html = ''; // Initialize a string to hold the HTML content
+
+    // Loop through each course in the courses array
+    courses.forEach(course => {
+        html += `
+            <div class="course">
+                <h3>${course.code}: ${course.name}</h3>
+                <div class="topics">`;
+
+        // Loop through each topic in the current course
+        course.topics.forEach(topic => {
+            html += `
+                <div class="topic">
+                    <h4>${topic.name}</h4>
+                    <p><strong>Explanation:</strong> ${topic.explanation}</p>
+                    <h5>Questions:</h5>
+                    <ul>`;
+
+            // Loop through the questions for this topic
+            topic.questions.forEach(question => {
+                html += `<li>${question}</li>`;
+            });
+
+            html += `</ul></div>`; // Close the topic div
+        });
+
+        html += `</div></div>`; // Close the course and topics div
+    });
+
+    // Append the generated HTML to the content div
+    content.innerHTML += html;
+}
+  const courses = [
+    { 
+        code: "GST 101", 
+        name: "English Language", 
+        topics: [
+            { 
+                name: "Grammar Basics", 
+                explanation: "Understanding the foundational rules of grammar, sentence structure, and parts of speech is crucial for effective communication in English. This topic covers the essentials of constructing grammatically correct sentences.",
+                questions: [
+                    "What is a noun?", 
+                    "Which sentence is grammatically correct?", 
+                    "Identify the subject in this sentence.", 
+                    "What is subject-verb agreement?", 
+                    "What is the correct punctuation for a question?", 
+                    "What is an adjective?", 
+                    "What is a preposition?", 
+                    "How do you use commas?", 
+                    "What is a compound sentence?", 
+                    "What are conjunctions?"
+                ]
+            },
+            { 
+                name: "Parts of Speech", 
+                explanation: "In this topic, we explore the different parts of speech that form the backbone of any sentence. Nouns, verbs, adjectives, adverbs, and others each play a specific role in expressing meaning.",
+                questions: [
+                    "What is a verb?", 
+                    "Which of these is an adjective?", 
+                    "What is an adverb?", 
+                    "What are conjunctions?", 
+                    "What is a pronoun?", 
+                    "Identify the interjection in this sentence.", 
+                    "What is the difference between a noun and a pronoun?", 
+                    "What is the role of a verb?", 
+                    "Which part of speech is a word that modifies a noun?", 
+                    "Which part of speech shows action?"
+                ]
+            },
+            { 
+                name: "Sentence Structure", 
+                explanation: "The structure of a sentence defines how different components (subject, predicate, etc.) are arranged to convey meaning. It includes simple, compound, complex, and compound-complex sentences.",
+                questions: [
+                    "What is a simple sentence?", 
+                    "What is a compound sentence?", 
+                    "How do you form a complex sentence?", 
+                    "What is a subject in a sentence?", 
+                    "What is a predicate?", 
+                    "What is a compound-complex sentence?", 
+                    "What is the difference between a declarative and an interrogative sentence?", 
+                    "How do you join independent clauses?", 
+                    "What are subordinating conjunctions?", 
+                    "What is a dependent clause?"
+                ]
+            },
+            { 
+                name: "Punctuation", 
+                explanation: "Punctuation is essential for organizing and clarifying meaning in writing. This topic covers punctuation marks such as commas, periods, question marks, exclamation marks, and colons.",
+                questions: [
+                    "What is the purpose of a comma?", 
+                    "When do you use a semicolon?", 
+                    "What is the difference between a period and a full stop?", 
+                    "How do you use an exclamation mark?", 
+                    "What is the role of quotation marks?", 
+                    "How do you use a colon?", 
+                    "When should you use parentheses?", 
+                    "What is an apostrophe used for?", 
+                    "When do you use ellipses?", 
+                    "How do you punctuate a compound sentence?"
+                ]
+            },
+            { 
+                name: "Verb Tenses", 
+                explanation: "Verb tenses express the time at which an action occurs. This topic covers present, past, and future tenses, and their different forms (simple, continuous, perfect).",
+                questions: [
+                    "What is the present simple tense?", 
+                    "What is the past perfect tense?", 
+                    "How do you form the future tense?", 
+                    "What is the difference between present continuous and present perfect?", 
+                    "When do you use the past continuous tense?", 
+                    "What is the role of auxiliary verbs?", 
+                    "How do you form negative sentences in the present tense?", 
+                    "What is the future perfect tense?", 
+                    "How do you form questions in past tense?", 
+                    "When do you use the future continuous tense?"
+                ]
+            },
+            { 
+                name: "Active and Passive Voice", 
+                explanation: "Voice refers to the relationship between the subject and the verb in a sentence. This topic covers how to convert sentences between active and passive voice.",
+                questions: [
+                    "What is the difference between active and passive voice?", 
+                    "How do you convert an active sentence to passive voice?", 
+                    "When should you use passive voice?", 
+                    "What is the role of the subject in passive voice?", 
+                    "What is the role of the agent in a passive sentence?", 
+                    "How do you change a sentence with 'to be' into passive voice?", 
+                    "How do you form a question in passive voice?", 
+                    "Can all sentences be converted to passive voice?", 
+                    "What is the use of 'by' in passive sentences?", 
+                    "What are some examples of passive sentences in everyday communication?"
+                ]
+            },
+            { 
+                name: "Direct and Indirect Speech", 
+                explanation: "Direct and indirect speech refer to how we report someone else's words. Direct speech quotes the person's exact words, while indirect speech paraphrases them.",
+                questions: [
+                    "What is direct speech?", 
+                    "What is indirect speech?", 
+                    "How do you change direct speech into indirect speech?", 
+                    "What is the rule for changing tenses in indirect speech?", 
+                    "What are reporting verbs?", 
+                    "How do you deal with punctuation in direct speech?", 
+                    "What is the difference between 'said' and 'told' in indirect speech?", 
+                    "How do you report commands in indirect speech?", 
+                    "How do you report questions in indirect speech?", 
+                    "What are some common mistakes in using direct and indirect speech?"
+                ]
+            },
+            { 
+                name: "Conditional Sentences", 
+                explanation: "Conditional sentences express hypothetical situations and their possible outcomes. They include first, second, third, and zero conditionals.",
+                questions: [
+                    "What is the first conditional?", 
+                    "What is the second conditional?", 
+                    "How do you form the third conditional?", 
+                    "What is the zero conditional?", 
+                    "When do you use the 'if' clause?", 
+                    "What is the difference between the first and second conditionals?", 
+                    "How do you express unreal situations?", 
+                    "What is the role of modals in conditional sentences?", 
+                    "Can conditionals be mixed?", 
+                    "How do you form negative conditional sentences?"
+                ]
+            },
+            { 
+                name: "Reported Speech", 
+                explanation: "Reported speech is used to express what someone else has said without quoting them directly. This topic involves changes in pronouns, verb tenses, and word order.",
+                questions: [
+                    "How do you change 'I am going' into reported speech?", 
+                    "What happens to pronouns in reported speech?", 
+                    "What is the rule for changing tenses in reported speech?", 
+                    "How do you report statements in reported speech?", 
+                    "How do you report questions in indirect speech?", 
+                    "What changes in reported speech when the reporting verb is in the past?", 
+                    "How do you report commands?", 
+                    "How do you report requests?", 
+                    "What is the difference between direct and reported questions?", 
+                    "Can you report someone’s feelings in reported speech?"
+                ]
+            }
+        ]
+    },
+  
+    { 
+        code: "MTH 102", 
+        name: "Mathematics", 
+        topics: [
+            { 
+                name: "Algebra", 
+                explanation: "Algebra involves the manipulation of variables and constants to solve equations. It is essential for solving problems involving unknown values and is a foundation for many advanced mathematics topics.",
+                questions: [
+                    "What is an algebraic expression?", 
+                    "How do you solve for x in an equation?", 
+                    "What is a quadratic equation?", 
+                    "How do you factor an expression?", 
+                    "What is the distributive property?", 
+                    "What is the difference between linear and quadratic equations?", 
+                    "What does solving for x mean?", 
+                    "What are the rules of exponents?", 
+                    "What is a coefficient?", 
+                    "What is the solution to a system of linear equations?"
+                ]
+            },
+            { 
+                name: "Geometry", 
+                explanation: "Geometry focuses on the properties and relations of points, lines, surfaces, and solids. This branch of mathematics is vital for understanding shapes and their properties in both two and three dimensions.",
+                questions: [
+                    "What is the Pythagorean theorem?", 
+                    "How do you calculate the area of a circle?", 
+                    "What is the difference between a rectangle and a square?", 
+                    "What is a parallelogram?", 
+                    "How do you find the volume of a cylinder?", 
+                    "What is the formula for the area of a triangle?", 
+                    "What are congruent angles?", 
+                    "What is the sum of the interior angles of a triangle?", 
+                    "How do you calculate the perimeter of a polygon?", 
+                    "What is a right angle?"
+                ]
+            },
+            { 
+                name: "Trigonometry", 
+                explanation: "Trigonometry studies the relationships between the angles and sides of triangles. It is essential in various applications, including physics and engineering.",
+                questions: [
+                    "What is the sine of an angle?", 
+                    "What is the cosine rule?", 
+                    "How do you calculate the height of a triangle using trigonometry?", 
+                    "What is the tangent of an angle?", 
+                    "What are the basic trigonometric ratios?", 
+                    "How do you use the unit circle in trigonometry?", 
+                    "What is the relationship between sine and cosine?", 
+                    "What is an angle of elevation?", 
+                    "How do you convert degrees to radians?", 
+                    "What is the secant function?"
+                ]
+            },
+            { 
+                name: "Calculus", 
+                explanation: "Calculus involves the study of change and motion. This branch of mathematics includes differentiation and integration, essential tools for analyzing functions and curves.",
+                questions: [
+                    "What is the derivative of a function?", 
+                    "What is the integral of a function?", 
+                    "How do you find the slope of a curve?", 
+                    "What is the chain rule?", 
+                    "What is the fundamental theorem of calculus?", 
+                    "How do you calculate the area under a curve?", 
+                    "What is the difference between differentiation and integration?", 
+                    "How do you apply limits in calculus?", 
+                    "What is an inflection point?", 
+                    "What is a critical point?"
+                ]
+            },
+            { 
+                name: "Statistics", 
+                explanation: "Statistics involves the collection, analysis, and interpretation of data. It includes concepts such as probability, mean, median, variance, and standard deviation.",
+                questions: [
+                    "What is the mean of a data set?", 
+                    "How do you calculate the variance?", 
+                    "What is probability?", 
+                    "What is a normal distribution?", 
+                    "What is the median?", 
+                    "What is the mode of a data set?", 
+                    "What is the difference between population and sample?", 
+                    "How do you perform hypothesis testing?", 
+                    "What is a p-value?", 
+                    "What is a confidence interval?"
+                ]
+            },
+            { 
+                name: "Linear Algebra", 
+                explanation: "Linear algebra is the branch of mathematics that deals with vectors, matrices, and linear transformations. It is foundational for computer science, engineering, and many other fields.",
+                questions: [
+                    "What is a matrix?", 
+                    "How do you multiply matrices?", 
+                    "What is a determinant?", 
+                    "What is a vector?", 
+                    "How do you find the inverse of a matrix?", 
+                    "What is a system of linear equations?", 
+                    "What are eigenvalues and eigenvectors?", 
+                    "What is a linear transformation?", 
+                    "How do you solve a matrix equation?", 
+                    "What is the rank of a matrix?"
+                ]
+            },
+            { 
+                name: "Probability", 
+                explanation: "Probability theory deals with the likelihood of events occurring. This topic is used to model random phenomena and is fundamental for statistics and data analysis.",
+                questions: [
+                    "What is the probability of an event?", 
+                    "What is the sample space?", 
+                    "What is conditional probability?", 
+                    "How do you calculate the probability of independent events?", 
+                    "What is Bayes' theorem?", 
+                    "What is a random variable?", 
+                    "What is the expected value?", 
+                    "What is a probability distribution?", 
+                    "What is the law of total probability?", 
+                    "What is the difference between discrete and continuous probability?"
+                ]
+            },
+            { 
+                name: "Set Theory", 
+                explanation: "Set theory studies the properties of sets, which are collections of objects. It is foundational for mathematics and logic.",
+                questions: [
+                    "What is a set?", 
+                    "What is the union of two sets?", 
+                    "What is the intersection of two sets?", 
+                    "What is the complement of a set?", 
+                    "What is a subset?", 
+                    "How do you represent a set?", 
+                    "What is the power set?", 
+                    "What is the difference between finite and infinite sets?", 
+                    "What is Venn diagram?", 
+                    "What is the cardinality of a set?"
+                ]
+            },
+            { 
+                name: "Number Theory", 
+                explanation: "Number theory deals with the properties and relationships of numbers, especially integers. It includes concepts such as divisibility, primes, and modular arithmetic.",
+                questions: [
+                    "What is a prime number?", 
+                    "What is the greatest common divisor?", 
+                    "How do you find the least common multiple?", 
+                    "What is modular arithmetic?", 
+                    "What is a perfect square?", 
+                    "What is a Fibonacci sequence?", 
+                    "What are even and odd numbers?", 
+                    "What is a prime factorization?", 
+                    "What is a Diophantine equation?", 
+                    "What is the Euclidean algorithm?"
+                ]
+            },
+            { 
+                name: "Mathematical Induction", 
+                explanation: "Mathematical induction is a method of mathematical proof used to prove statements about natural numbers. It involves proving a base case and then proving that if the statement holds for one case, it holds for the next.",
+                questions: [
+                    "What is mathematical induction?", 
+                    "How do you prove a base case?", 
+                    "What is the inductive step?", 
+                    "What is the principle of mathematical induction?", 
+                    "What is strong induction?", 
+                    "What is the role of a hypothesis in induction?", 
+                    "How do you prove inequalities using induction?", 
+                    "What are examples of induction proofs?", 
+                    "What is the difference between induction and deduction?", 
+                    "What is the conclusion of an induction proof?"
+                ]
+            }
+        ]
+    },
+
+    
+    { 
+        code: "PHY 101", 
+        name: "Physics", 
+        topics: [
+            { 
+                name: "Mechanics", 
+                explanation: "Mechanics is the branch of physics concerned with the motion of objects and the forces acting on them. It includes concepts such as velocity, acceleration, force, and Newton's laws of motion.",
+                questions: [
+                    "What is Newton's First Law of Motion?", 
+                    "What is the difference between speed and velocity?", 
+                    "How do you calculate acceleration?", 
+                    "What is the formula for force?", 
+                    "What is inertia?", 
+                    "What is the significance of mass?", 
+                    "How does friction affect motion?", 
+                    "What is the relationship between force and acceleration?", 
+                    "How do you calculate momentum?", 
+                    "What is gravitational force?"
+                ]
+            },
+            { 
+                name: "Thermodynamics", 
+                explanation: "Thermodynamics is the study of heat, temperature, and energy. This topic covers the laws of thermodynamics and their applications in energy transfer, engines, and heat flow.",
+                questions: [
+                    "What is the First Law of Thermodynamics?", 
+                    "What is temperature?", 
+                    "What is heat capacity?", 
+                    "How does the Second Law of Thermodynamics apply to entropy?", 
+                    "What is thermal equilibrium?", 
+                    "What is a Carnot engine?", 
+                    "How does heat transfer by conduction work?", 
+                    "What is specific heat?", 
+                    "What is the concept of latent heat?", 
+                    "What is the difference between heat and temperature?"
+                ]
+            },
+            { 
+                name: "Electromagnetism", 
+                explanation: "Electromagnetism deals with the study of electric and magnetic fields and their interactions. It is essential for understanding how electrical circuits, magnetic fields, and light work.",
+                questions: [
+                    "What is Coulomb's Law?", 
+                    "How do electric charges interact?", 
+                    "What is an electric field?", 
+                    "What is magnetic induction?", 
+                    "What is Ampère's Law?", 
+                    "What is the difference between electric and magnetic fields?", 
+                    "How do electric currents create magnetic fields?", 
+                    "What is the relationship between electricity and magnetism?", 
+                    "What is Faraday's Law of Induction?", 
+                    "What is the Lorentz Force?"
+                ]
+            },
+            { 
+                name: "Optics", 
+                explanation: "Optics is the branch of physics that deals with light and its interactions with matter. This topic explores reflection, refraction, diffraction, and the behavior of light in different media.",
+                questions: [
+                    "What is the Law of Reflection?", 
+                    "How do you calculate the focal length of a lens?", 
+                    "What is refraction?", 
+                    "What is diffraction?", 
+                    "What are the properties of light waves?", 
+                    "What is the difference between concave and convex lenses?", 
+                    "What is Snell's Law?", 
+                    "What is total internal reflection?", 
+                    "What is the electromagnetic spectrum?", 
+                    "What is a mirror image?"
+                ]
+            },
+            { 
+                name: "Waves and Oscillations", 
+                explanation: "Waves and oscillations are fundamental concepts in physics. This topic explores the behavior of mechanical and electromagnetic waves, as well as periodic motion.",
+                questions: [
+                    "What is the difference between longitudinal and transverse waves?", 
+                    "What is wave frequency?", 
+                    "What is the wavelength of a wave?", 
+                    "What is the amplitude of an oscillation?", 
+                    "How do you calculate wave speed?", 
+                    "What is resonance?", 
+                    "What is the Doppler effect?", 
+                    "How do sound waves propagate?", 
+                    "What is interference in wave phenomena?", 
+                    "What is the principle of superposition?"
+                ]
+            },
+            { 
+                name: "Modern Physics", 
+                explanation: "Modern physics includes quantum mechanics and relativity, which describe the behavior of matter and energy at small scales (atomic level) and large scales (cosmological).",
+                questions: [
+                    "What is the Heisenberg Uncertainty Principle?", 
+                    "What is quantum entanglement?", 
+                    "What is the theory of relativity?", 
+                    "How does time dilation occur?", 
+                    "What is the photoelectric effect?", 
+                    "What is the Schrödinger equation?", 
+                    "What is the difference between classical and quantum mechanics?", 
+                    "What is a photon?", 
+                    "What is the concept of spacetime?", 
+                    "What is the wave-particle duality?"
+                ]
+            },
+            { 
+                name: "Fluid Mechanics", 
+                explanation: "Fluid mechanics studies the behavior of liquids and gases in motion and at rest. This topic includes concepts like pressure, buoyancy, and fluid flow.",
+                questions: [
+                    "What is Archimedes' Principle?", 
+                    "What is Bernoulli's Equation?", 
+                    "How do you calculate the pressure exerted by a fluid?", 
+                    "What is viscosity?", 
+                    "What is the continuity equation?", 
+                    "How does fluid flow through pipes?", 
+                    "What is the difference between laminar and turbulent flow?", 
+                    "What is surface tension?", 
+                    "How does the buoyant force act on objects?", 
+                    "What is the Reynolds number?"
+                ]
+            },
+            { 
+                name: "Nuclear Physics", 
+                explanation: "Nuclear physics involves the study of atomic nuclei, nuclear reactions, and radioactive decay. It has applications in energy production and medical imaging.",
+                questions: [
+                    "What is nuclear fission?", 
+                    "What is nuclear fusion?", 
+                    "What is radioactivity?", 
+                    "What is the half-life of a substance?", 
+                    "What is a neutron?", 
+                    "What is the role of a moderator in a nuclear reactor?", 
+                    "What is a chain reaction?", 
+                    "What is a Geiger counter used for?", 
+                    "What is an isotope?", 
+                    "What is the concept of nuclear decay?"
+                ]
+            },
+            { 
+                name: "Astrophysics", 
+                explanation: "Astrophysics is the study of celestial objects and phenomena beyond Earth's atmosphere. It combines physics and astronomy to understand the universe.",
+                questions: [
+                    "What is the Big Bang Theory?", 
+                    "What are black holes?", 
+                    "What is dark matter?", 
+                    "What is the life cycle of a star?", 
+                    "How do astronomers measure distance to stars?", 
+                    "What is the cosmic microwave background radiation?", 
+                    "What is redshift?", 
+                    "What is gravitational lensing?", 
+                    "How do you calculate the luminosity of a star?", 
+                    "What are exoplanets?"
+                ]
+            }
+        ]
+    },
+
+    // 4. Chemistry
+    { 
+        code: "CHE 101", 
+        name: "Chemistry", 
+        topics: [
+            { 
+                name: "Atomic Structure", 
+                explanation: "Atomic structure explores the arrangement of protons, neutrons, and electrons within atoms. This topic lays the foundation for understanding chemical bonding and reactions.",
+                questions: [
+                    "What is the atomic number?", 
+                    "What is the difference between an isotope and an element?", 
+                    "How do you calculate the atomic mass?", 
+                    "What is the Bohr model of the atom?", 
+                    "What is an electron configuration?", 
+                    "What is the role of neutrons?", 
+                    "How do protons affect the identity of an atom?", 
+                    "What is an ion?", 
+                    "What is the periodic table?", 
+                    "What are orbitals?"
+                ]
+            },
+            { 
+                name: "Periodic Table", 
+                explanation: "The periodic table organizes elements according to their atomic number, electron configuration, and recurring chemical properties.",
+                questions: [
+                    "What is the periodic law?", 
+                    "How are elements arranged in the periodic table?", 
+                    "What are groups and periods?", 
+                    "What is a noble gas?", 
+                    "What is the significance of the transition metals?", 
+                    "What are alkali metals?", 
+                    "What are halogens?", 
+                    "What is the trend in atomic radius?", 
+                    "What is the trend in ionization energy?", 
+                    "What is electron affinity?"
+                ]
+            },
+            { 
+                name: "Chemical Bonding", 
+                explanation: "Chemical bonding explains how atoms combine to form compounds. It includes ionic, covalent, and metallic bonding.",
+                questions: [
+                    "What is ionic bonding?", 
+                    "What is covalent bonding?", 
+                    "What is the octet rule?", 
+                    "How do you determine the electronegativity difference?", 
+                    "What is a polar bond?", 
+                    "What is a molecule?", 
+                    "How do you determine bond polarity?", 
+                    "What is a metallic bond?", 
+                    "What is VSEPR theory?", 
+                    "What is resonance in chemistry?"
+                ]
+            },
+            { 
+                name: "Stoichiometry", 
+                explanation: "Stoichiometry is the calculation of reactants and products in chemical reactions. It allows chemists to predict the quantities of substances consumed and produced in a reaction.",
+                questions: [
+                    "What is a mole?", 
+                    "How do you balance a chemical equation?", 
+                    "What is the law of conservation of mass?", 
+                    "How do you calculate molar mass?", 
+                    "What is a limiting reagent?", 
+                    "How do you calculate percent yield?", 
+                    "What is the ideal gas law?", 
+                    "How do you calculate empirical formulas?", 
+                    "What is the concept of molar volume?", 
+                    "How do you convert between moles and molecules?"
+                ]
+            },
+            { 
+                name: "Acids and Bases", 
+                explanation: "Acids and bases are fundamental concepts in chemistry, often involving the transfer of protons (H+). This topic covers acid-base reactions, pH scale, and buffer systems.",
+                questions: [
+                    "What is an acid?", 
+                    "What is a base?", 
+                    "What is the pH scale?", 
+                    "How do you calculate pH?", 
+                    "What is a strong acid?", 
+                    "What is a weak base?", 
+                    "What is the difference between conjugate acid and base?", 
+                    "What is a buffer solution?", 
+                    "What is the Bronsted-Lowry definition of acids and bases?", 
+                    "What is the Lewis definition of acids and bases?"
+                ]
+            }
+        ]
+    },
+
+    // 5. Biology
+    { 
+        code: "BIO 101", 
+        name: "Biology", 
+        topics: [
+            { 
+                name: "Cell Biology", 
+                explanation: "Cell biology studies the structure and function of cells, which are the basic building blocks of life. This topic covers the cell theory, organelles, and cellular processes.",
+                questions: [
+                    "What is the cell theory?", 
+                    "What are prokaryotic and eukaryotic cells?", 
+                    "What is the function of the mitochondria?", 
+                    "What is the role of the nucleus?", 
+                    "What is the difference between plant and animal cells?", 
+                    "What is the function of the ribosomes?", 
+                    "What is the endoplasmic reticulum?", 
+                    "What is the Golgi apparatus?", 
+                    "What are lysosomes?", 
+                    "What is the cytoskeleton?"
+                ]
+            },
+            { 
+                name: "Genetics", 
+                explanation: "Genetics is the study of heredity and variation in organisms. It involves DNA structure, gene expression, and inheritance patterns.",
+                questions: [
+                    "What is DNA?", 
+                    "What is the difference between genotype and phenotype?", 
+                    "What is Mendel’s Law of Segregation?", 
+                    "What are dominant and recessive traits?", 
+                    "How do mutations affect genes?", 
+                    "What is genetic recombination?", 
+                    "What is the structure of RNA?", 
+                    "What is a gene?", 
+                    "What is a chromosome?", 
+                    "What is a Punnett square?"
+                ]
+            },
+            { 
+                name: "Ecology", 
+                explanation: "Ecology studies the interactions of organisms with their environment. It covers topics like ecosystems, food webs, and conservation.",
+                questions: [
+                    "What is an ecosystem?", 
+                    "What are producers, consumers, and decomposers?", 
+                    "What is the water cycle?", 
+                    "What is the carbon cycle?", 
+                    "What is an ecological niche?", 
+                    "What is biodiversity?", 
+                    "What is the role of predators in an ecosystem?", 
+                    "What is succession?", 
+                    "What is energy flow in ecosystems?", 
+                    "What are the causes of environmental degradation?"
+                ]
+            },
+            { 
+                name: "Human Anatomy and Physiology", 
+                explanation: "This topic explores the structure and function of the human body, including organ systems, tissues, and biological processes.",
+                questions: [
+                    "What is the function of the circulatory system?", 
+                    "What is the role of the respiratory system?", 
+                    "What is homeostasis?", 
+                    "How do the kidneys filter blood?", 
+                    "What is the structure of the human heart?", 
+                    "What is the nervous system?", 
+                    "What is the digestive system?", 
+                    "What is the skeletal system?", 
+                    "What is the muscular system?", 
+                    "What is the immune system?"
+                ]
+            },
+            { 
+                name: "Evolution", 
+                explanation: "Evolution explains the change in species over time through mechanisms like natural selection, mutation, and genetic drift.",
+                questions: [
+                    "What is natural selection?", 
+                    "What is adaptation?", 
+                    "What is the theory of evolution?", 
+                    "What is a species?", 
+                    "What is a mutation?", 
+                    "What is genetic drift?", 
+                    "What is artificial selection?", 
+                    "How do fossils support the theory of evolution?", 
+                    "What is speciation?", 
+                    "What is convergent evolution?"
+                ]
+            }
+        ]
+    },
+    { 
+        code: "CS 101", 
+        name: "Computer Science", 
+        topics: [
+            { 
+                name: "Introduction to Programming", 
+                explanation: "Programming is the process of creating a set of instructions that tell a computer how to perform a task. This topic covers the basics of programming languages, syntax, and structure.",
+                questions: [
+                    "What is a programming language?", 
+                    "What is an algorithm?", 
+                    "What is a variable?", 
+                    "What are data types?", 
+                    "What is the difference between a compiler and an interpreter?", 
+                    "What is conditional logic?", 
+                    "What is a loop?", 
+                    "What is the syntax for a function?", 
+                    "What are arrays?", 
+                    "What is debugging?"
+                ]
+            },
+            { 
+                name: "Data Structures", 
+                explanation: "Data structures are ways to organize and store data efficiently. This topic covers arrays, lists, stacks, queues, trees, and graphs.",
+                questions: [
+                    "What is an array?", 
+                    "What is a stack?", 
+                    "What is a queue?", 
+                    "What is a linked list?", 
+                    "What is a binary tree?", 
+                    "What is a graph?", 
+                    "What is a hash table?", 
+                    "What is the difference between a stack and a queue?", 
+                    "What are the operations on a linked list?", 
+                    "What is recursion?"
+                ]
+            },
+            { 
+                name: "Algorithms", 
+                explanation: "Algorithms are step-by-step instructions for solving problems. This topic covers sorting algorithms, searching algorithms, and algorithm complexity.",
+                questions: [
+                    "What is a sorting algorithm?", 
+                    "What is bubble sort?", 
+                    "What is quicksort?", 
+                    "What is a searching algorithm?", 
+                    "What is binary search?", 
+                    "What is Big O notation?", 
+                    "What is time complexity?", 
+                    "What is space complexity?", 
+                    "What is the difference between a greedy algorithm and a dynamic programming algorithm?", 
+                    "What is divide and conquer?"
+                ]
+            },
+            { 
+                name: "Object-Oriented Programming (OOP)", 
+                explanation: "Object-Oriented Programming is a programming paradigm based on the concept of 'objects', which can contain data and code. This topic introduces classes, objects, inheritance, polymorphism, and encapsulation.",
+                questions: [
+                    "What is a class?", 
+                    "What is an object?", 
+                    "What is inheritance?", 
+                    "What is polymorphism?", 
+                    "What is encapsulation?", 
+                    "What is abstraction?", 
+                    "What is a constructor?", 
+                    "What is a method?", 
+                    "What is method overloading?", 
+                    "What is method overriding?"
+                ]
+            },
+            { 
+                name: "Web Development", 
+                explanation: "Web development involves creating websites and web applications. This topic covers HTML, CSS, JavaScript, and front-end and back-end technologies.",
+                questions: [
+                    "What is HTML?", 
+                    "What is CSS?", 
+                    "What is JavaScript?", 
+                    "What is the difference between front-end and back-end development?", 
+                    "What is a web framework?", 
+                    "What is DOM?", 
+                    "What is responsive design?", 
+                    "What are APIs?", 
+                    "What is a content management system (CMS)?", 
+                    "What is AJAX?"
+                ]
+            }
+        ]
+    },
+
+    // 7. History
+    { 
+        code: "HIS 101", 
+        name: "History", 
+        topics: [
+            { 
+                name: "Ancient Civilizations", 
+                explanation: "This topic covers the rise and fall of early civilizations such as Mesopotamia, Egypt, the Indus Valley, China, and the Americas.",
+                questions: [
+                    "What is the significance of Mesopotamia?", 
+                    "What were the major achievements of Ancient Egypt?", 
+                    "What is the Indus Valley Civilization known for?", 
+                    "How did Ancient China influence world history?", 
+                    "What is the Mayan Civilization famous for?", 
+                    "What were the key features of the Roman Empire?", 
+                    "What were the contributions of Ancient Greece?", 
+                    "How did the Persian Empire shape the ancient world?", 
+                    "What is the significance of the Pyramids of Giza?", 
+                    "How did trade influence ancient civilizations?"
+                ]
+            },
+            { 
+                name: "Medieval History", 
+                explanation: "Medieval history focuses on the period between the fall of the Roman Empire and the beginning of the Renaissance. This topic includes feudalism, the Crusades, and the rise of monarchies.",
+                questions: [
+                    "What is feudalism?", 
+                    "What were the Crusades?", 
+                    "What is the significance of the Magna Carta?", 
+                    "Who was Charlemagne?", 
+                    "What is the Black Plague?", 
+                    "How did the Viking invasions affect Europe?", 
+                    "What were the key features of the Byzantine Empire?", 
+                    "How did the Catholic Church influence Medieval Europe?", 
+                    "What is the role of knights in the Middle Ages?", 
+                    "What is the significance of the Hundred Years' War?"
+                ]
+            },
+            { 
+                name: "Renaissance and Reformation", 
+                explanation: "The Renaissance was a period of cultural rebirth in Europe, while the Reformation brought religious and political upheavals. This topic covers key events, figures, and ideas from these periods.",
+                questions: [
+                    "What is the significance of the Renaissance?", 
+                    "Who were the key figures of the Renaissance?", 
+                    "What is humanism?", 
+                    "What is the Protestant Reformation?", 
+                    "Who was Martin Luther?", 
+                    "What was the impact of the printing press?", 
+                    "What is the significance of the Council of Trent?", 
+                    "What is the difference between the Catholic Church and Protestantism?", 
+                    "What was the impact of the Reformation on European politics?", 
+                    "How did the Renaissance influence art and culture?"
+                ]
+            },
+            { 
+                name: "World Wars", 
+                explanation: "This topic explores the causes, events, and consequences of World War I and World War II. It includes discussions on major battles, political leaders, and the formation of international organizations.",
+                questions: [
+                    "What were the causes of World War I?", 
+                    "What is trench warfare?", 
+                    "Who were the major powers in World War I?", 
+                    "What was the Treaty of Versailles?", 
+                    "What were the causes of World War II?", 
+                    "Who were the leaders of the Allied Powers?", 
+                    "What was the role of the United Nations in World War II?", 
+                    "What was D-Day?", 
+                    "What was the significance of the atomic bomb?", 
+                    "What were the long-term consequences of the World Wars?"
+                ]
+            },
+            { 
+                name: "Cold War", 
+                explanation: "The Cold War was a period of geopolitical tension between the Soviet Union and the United States. This topic explores the ideological, military, and political conflicts between the two superpowers.",
+                questions: [
+                    "What were the causes of the Cold War?", 
+                    "What is the significance of the Cuban Missile Crisis?", 
+                    "What was the role of the Berlin Wall?", 
+                    "What was the arms race?", 
+                    "What was the Space Race?", 
+                    "What was the significance of the Korean War?", 
+                    "What was the Vietnam War?", 
+                    "What was the role of NATO?", 
+                    "What were the major events in the collapse of the Soviet Union?", 
+                    "How did the Cold War impact global politics?"
+                ]
+            }
+        ]
+    },
+
+    // 8. Philosophy
+    { 
+        code: "PHI 101", 
+        name: "Philosophy", 
+        topics: [
+            { 
+                name: "Introduction to Philosophy", 
+                explanation: "Philosophy is the study of fundamental questions regarding existence, knowledge, ethics, and reason. This topic introduces the major branches of philosophy.",
+                questions: [
+                    "What is philosophy?", 
+                    "What are the major branches of philosophy?", 
+                    "What is epistemology?", 
+                    "What is metaphysics?", 
+                    "What is ethics?", 
+                    "What is logic?", 
+                    "What is existentialism?", 
+                    "What is the difference between rationalism and empiricism?", 
+                    "What is a philosopher?", 
+                    "What is the Socratic method?"
+                ]
+            },
+            { 
+                name: "Ancient Greek Philosophy", 
+                explanation: "Ancient Greek philosophy laid the foundation for much of Western thought. This topic covers the works of early philosophers such as Socrates, Plato, and Aristotle.",
+                questions: [
+                    "Who was Socrates?", 
+                    "What is the significance of Plato's Theory of Forms?", 
+                    "What is Aristotle's concept of virtue?", 
+                    "What is the Socratic method?", 
+                    "What is the Allegory of the Cave?", 
+                    "What is the difference between Plato and Aristotle's philosophies?", 
+                    "What is the role of reason in Greek philosophy?", 
+                    "What is Stoicism?", 
+                    "What is the concept of the philosopher-king?", 
+                    "What is the relationship between ethics and politics in Greek philosophy?"
+                ]
+            },
+            { 
+                name: "Modern Philosophy", 
+                explanation: "Modern philosophy focuses on developments from the Renaissance to the present. This topic includes key figures such as Descartes, Kant, and Nietzsche.",
+                questions: [
+                    "What is René Descartes’ famous quote?", 
+                    "What is the Cartesian method?", 
+                    "What is Immanuel Kant’s categorical imperative?", 
+                    "What is Friedrich Nietzsche's concept of the Übermensch?", 
+                    "What is empiricism?", 
+                    "What is rationalism?", 
+                    "What is John Locke’s theory of the mind?", 
+                    "What is the social contract theory?", 
+                    "What is the distinction between analytic and synthetic judgments?", 
+                    "What is the significance of existentialism?"
+                ]
+            },
+            { 
+                name: "Ethics", 
+                explanation: "Ethics is the branch of philosophy that deals with questions about what is morally right and wrong. This topic covers different ethical theories and their application.",
+                questions: [
+                    "What is ethical relativism?", 
+                    "What is utilitarianism?", 
+                    "What is deontology?", 
+                    "What is virtue ethics?", 
+                    "What is the trolley problem?", 
+                    "What is moral absolutism?", 
+                    "What is the difference between consequentialism and non-consequentialism?", 
+                    "What is the golden rule?", 
+                    "What is the concept of moral responsibility?", 
+                    "What is the principle of justice?"
+                ]
+            },
+            { 
+                name: "Political Philosophy", 
+                explanation: "Political philosophy explores questions about power, justice, rights, and the role of the state. This topic includes the works of philosophers like Hobbes, Rousseau, and Marx.",
+                questions: [
+                    "What is the social contract?", 
+                    "What is the state of nature?", 
+                    "What is the concept of natural rights?", 
+                    "What is Marxism?", 
+                    "What is liberalism?", 
+                    "What is the difference between democracy and authoritarianism?", 
+                    "What is the theory of justice by John Rawls?", 
+                    "What is the role of the government?", 
+                    "What is anarchism?", 
+                    "What is political equality?"
+                ]
+            }
+        ]
+    }
+
+];
+
+
+// Load the content dynamically based on the selected section
+function loadSection(section) {
+    const content = document.getElementById("content");
+    content.innerHTML = ""; // Clear previous content
+
+    if (section === "home") {
+                content.innerHTML = `
+                    <section class="hero">
+                        <h1>Welcome to NewGate</h1>
+                        <p>Embark on your academic journey with NewGate University. Explore courses, materials, and quizzes designed to help you succeed in your studies.</p>
+                        <div class="intro-cards">
+                            <div class="intro-card">
+                                <h3>Courses</h3>
+                                <p>Access a variety of courses across multiple disciplines. Learn from the best professors and excel in your field.</p>
+                            </div>
+                            <div class="intro-card">
+                                <h3>Materials</h3>
+                                <p>Study materials, textbooks, notes, and more are available to help you understand complex topics and improve your learning.</p>
+                            </div>
+                            <div class="intro-card">
+                                <h3>Quizzes</h3>
+                                <p>Test your knowledge with quizzes and practice questions. Stay sharp and track your progress throughout the semester.</p>
+                            </div>
+                        </div>
+                    </section>
+                `;
+            }  else if (section === "courses") {
+        loadCourses(); // Function to load courses
+    } else if (section === "materials") {
+        content.innerHTML = `<h2>Materials</h2><p>Explore the courses and their topics below:</p>`;
+        loadMaterials(); // Function to load courses and topics
+    } else if (section === "questions") {
+        loadQuestionsPage(); // New function to load questions when this section is selected
+    } else if (section === "settings") {
+        content.innerHTML = `<h2>Settings</h2><p>Manage your account settings and preferences here.</p>`;
+    }
+     // Initialize the page with the home section on page load
+     window.onload = function() {
+            loadSection("home");
+        };
+}
+
+// New function to load the Questions page
+function loadQuestionsPage() {
+    const content = document.getElementById("content");
+    content.innerHTML = "<h2>Courses and Topics</h2>";
+
+    // Generate course buttons dynamically based on the `courses` array
+    const courseList = document.createElement("div");
+    courseList.classList.add("course-list");
+
+    courses.forEach(course => {
+        const courseButton = document.createElement("button");
+        courseButton.innerText = `${course.code}: ${course.name}`; // Display course code and name
+        courseButton.onclick = () => showCourseTopics(course); // Show topics when clicked
+        courseList.appendChild(courseButton);
+    });
+
+    content.appendChild(courseList);
+}
+
+//function showCourseTopics(course) {
+    function showCourseTopics(course) {
+    const content = document.getElementById("content");
+    content.innerHTML = `
+        <div id="course-topics-section">
+            <h2>${course.name} - Topics</h2>
+            <p>Click a topic to view the questions.</p>
+            <div class="topic-list">
+                ${course.topics.map((topic, index) => `
+                    <button class="topic-button" onclick="showTopicQuestions('${course.code}', ${index})">
+                        ${topic.name}
+                    </button>
+                `).join('')}
+            </div>
+            <button class="back-button" onclick="loadCourses()">Back to Courses</button>
+        </div>
+    `;
+}
+function showCourseTopics(course) {
+    const content = document.getElementById("content");
+    content.innerHTML = `
+        <div id="course-topics-section">
+            <h2>${course.name} - Topics</h2>
+            <p>Click a topic to view the questions.</p>
+            <div class="topic-list">
+                ${course.topics.map((topic, index) => `
+                    <button class="topic-button" onclick="showTopicQuestions('${course.code}', ${index})">
+                        ${topic.name}
+                    </button>
+                `).join('')}
+            </div>
+            <button class="back-button" onclick="loadCourses()">Back to Courses</button>
+        </div>
+    `;
+}
+
+
+// Show questions when a topic is clicked
+function showCourseTopics(course) {
+    const content = document.getElementById("content");
+    content.innerHTML = `
+        <div id="course-topics-section">
+            <h2>${course.name} - Topics</h2>
+            <p>Click a topic to view the questions.</p>
+            <div class="topic-list">
+                ${course.topics.map((topic, index) => `
+                    <button class="topic-button" onclick="showTopicQuestions('${course.code}', ${index})">
+                        ${topic.name}
+                    </button>
+                `).join('')}
+            </div>
+            <button class="back-button" onclick="loadCourses()">Back to Courses</button>
+        </div>
+    `;
+}
+ // Function to handle going back to the topics section after viewing questions
+ function showCourseTopicsFromQuestions(courseCode) {
+    const course = courses.find(c => c.code === courseCode);
+    showCourseTopics(course);  // Redirect to the topics page for the given course
+}
+// Show questions when a topic is clicked
+function showTopicQuestions(courseCode, topicIndex) {
+    const course = courses.find(c => c.code === courseCode);
+    const topic = course.topics[topicIndex];
+    const content = document.getElementById("content");
+    content.innerHTML = `
+        <div id="topic-questions-section">
+            <h2>${topic.name} - Questions</h2>
+            <p>Here are the questions for this topic:</p>
+            <div class="question-list">
+                ${topic.questions.map(question => `
+                    <button class="question-button">
+                        ${question}
+                    </button>
+                `).join('')}
+              </div>
+            <button class="back-button" onclick="showCourseTopicsFromQuestions('${course.code}')">Back to Topics</button>
+        </div>
+    `;
+   
+}
+        function loadCourses() {
+            const content = document.getElementById("content");
+            content.innerHTML = "<h2>Courses</h2>";
+            const courseList = document.createElement("div");
+            courseList.classList.add("course-list");
+
+            courses.forEach((course) => {
+                const card = document.createElement("div");
+                card.classList.add("course-card");
+                card.innerHTML = `
+                    <h3>${course.code}: ${course.name}</h3>
+                    <button onclick="viewTopics('${course.code}')">View Topics</button>`;
+                courseList.appendChild(card);
+            });
+
+            content.appendChild(courseList);
+        }
+
+        function viewTopics(courseCode) {
+            const course = courses.find((c) => c.code === courseCode);
+            const content = document.getElementById("content");
+            content.innerHTML = `
+                <h2>${course.name} - Topics</h2>
+                <div class="topics">
+                    ${course.topics.map((topic, index) => `
+                        <div class="topic-card" onclick="viewTopicDetail('${courseCode}', ${index})">
+                            ${topic.name}
+                        </div>`).join("")}
+                </div>
+                <button onclick="loadCourses()">Back to Courses</button>`;
+        }
+
+        function viewTopicDetail(courseCode, topicIndex) {
+            const course = courses.find((c) => c.code === courseCode);
+            const topic = course.topics[topicIndex];
+            const content = document.getElementById("content");
+
+            content.innerHTML = `
+                <div class="topic-details">
+                    <h2>${topic.name}</h2>
+                    <p><strong>Explanation:</strong> ${topic.explanation}</p>
+                    <h3>Generated Questions:</h3>
+                    <ul>
+                        ${topic.questions.map((question) => `<li>${question}</li>`).join("")}
+                    </ul>
+                    <button onclick="viewTopics('${courseCode}')">Back to Topics</button>
+                </div>`;
+        }
+
+        function logout() {
+    // Optionally, clear authentication data (e.g., tokens or user session)
+    localStorage.removeItem("authToken"); // Assuming you use localStorage to store tokens
+
+    // Display a logout confirmation message
+    const content = document.getElementById("content");
+    content.innerHTML = `<h2>Logout</h2><p>You have been logged out successfully.</p>`;
+    
+    // Redirect to login page after a short delay (for UX)
+    setTimeout(() => {
+        window.location.href = "index.html";  // Assuming login page is "login.html"
+    }, 1500);  // Adjust the delay as needed (1500ms = 1.5 seconds)
+}
+
+        loadSection("index");
+    
+    </script>
+</body>
+</html>
