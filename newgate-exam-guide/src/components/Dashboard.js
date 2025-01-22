@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';  // Import the useNavigate hook
 import './Dashboard.css'; // Ensure the CSS is linked correctly
 
 // Importing components
+import LandingPage from './LandingPage';
 import HomeContent from './HomeContent';
 import CoursesContent from './CoursesContent';
 import MaterialsContent from './MaterialsContent';
@@ -22,12 +23,12 @@ const Dashboard = () => {
     // Logout Handler
     const handleLogout = () => {
         // Display logout message
-        setLogoutMessage('You have been logged out. Redirecting to the landing page...');
+        setLogoutMessage('You have been logged out. Redirecting to login page...');
 
         // Redirect after 3 seconds
         setTimeout(() => {
-            // Navigate to the landing page
-            navigate('/');  // Assuming '/' is the landing page route
+            // Navigate to login page
+            navigate('./LandingPage');
         }, 3000);
     };
 

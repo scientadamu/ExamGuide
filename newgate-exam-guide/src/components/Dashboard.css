@@ -17,6 +17,8 @@
     padding: 20px;
     display: flex;
     flex-direction: column;
+    transition: transform 0.3s ease;
+    z-index: 10; /* Ensure the sidebar is above other content */
 }
 
 .sidebar h2 {
@@ -41,10 +43,10 @@
 
 /* Main Content Styles */
 .main-content {
-    /* background: red; */
     margin-left: 250px;
     padding: 20px;
     margin-top: 100px; /* To avoid overlap with fixed header */
+    transition: margin-left 0.3s ease;
 }
 
 .header {
@@ -56,16 +58,16 @@
     top: 0;
     left: 250px;
     right: 0;
-    z-index: 10;
+    z-index: 5; /* Header will stay below the sidebar */
     width: calc(100% - 250px);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: width 0.3s ease;
 }
 
 .content {
     margin-top: 0px;
     padding: 20px;
     background-color: #fff;
-    /* background-color: blue; */
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
@@ -78,72 +80,45 @@
     padding: 20px;
     margin-top: 20px;
 }
-/* Inside Dashboard.css or your global styles */
 
-/* Home Content Styles */
-.home-content {
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
+/* Responsive Styles */
+@media (max-width: 768px) {
+    /* Sidebar - Hide by default on smaller screens */
+    .sidebar {
+        display: none;
+        transform: translateX(-100%);
+        background: red;
+        height: 100%; /* Ensure it spans the full height */
+    }
 
-.welcome-message h2 {
-    font-size: 32px;
-    color: #333;
-}
+    /* Hamburger menu styles */
+    .hamburger-menu {
+        display: block;
+        background: red;
+        position: fixed; /* Fix it to the top */
+        top: 20px;
+        left: 20px;
+        font-size: 30px;
+        color: #fff;
+        cursor: pointer;
+        z-index: 20; /* Ensure the hamburger is above everything */
+    }
 
-.welcome-message p {
-    font-size: 18px;
-    color: #555;
-}
+    /* Adjust header */
+    .header {
+        left: 0;
+        width: 100%;
+        z-index: 5; /* Ensure header stays below hamburger and sidebar */
+    }
 
-.latest-news {
-    margin-top: 20px;
-    background-color: #f1f1f1;
-    padding: 15px;
-    border-radius: 8px;
-}
+    /* Main content should take full width */
+    .main-content {
+        margin-left: 0;
+    }
 
-.latest-news h3 {
-    font-size: 24px;
-    color: #333;
-}
-
-.latest-news ul {
-    list-style-type: none;
-    padding-left: 0;
-}
-
-.latest-news ul li {
-    font-size: 16px;
-    color: #555;
-    padding: 5px 0;
-}
-
-.home-sections {
-    margin-top: 40px;
-}
-
-.home-sections .section {
-    margin-bottom: 30px;
-}
-
-.home-sections h3 {
-    font-size: 26px;
-    color: #333;
-    margin-bottom: 10px;
-}
-
-/* Logout Message Styles */
-.logout-message {
-    background-color: #f44336; /* Red background */
-    color: white;
-    padding: 15px;
-    margin-top: 20px;
-    text-align: center;
-    font-size: 16px;
-    border-radius: 5px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: opacity 0.3s ease;
+    /* Show sidebar when active */
+    .sidebar.active {
+        display: block;
+        transform: translateX(0); /* Slide in the sidebar */
+    }
 }

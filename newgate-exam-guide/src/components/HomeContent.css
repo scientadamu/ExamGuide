@@ -1,6 +1,6 @@
 /* General Styling */
 .home-content {
-    padding: 30px;
+    padding: 0 30px;
     background-color: #f0f0f0;
     font-family: 'Arial', sans-serif;
 }
@@ -9,7 +9,7 @@
 .welcome-message {
     background-color: #2980b9;
     color: white;
-    padding: 40px;
+    padding: 0px;
     border-radius: 10px;
     text-align: center;
     margin-bottom: 30px;
@@ -29,8 +29,9 @@
 
 /* Latest News Card */
 .latest-news {
-    margin-top: 20px;
+    margin-top: 0px;
     background-color: #fafafa;
+    
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
@@ -41,6 +42,7 @@
     margin-bottom: 20px;
     color: #333;
     font-weight: 500;
+    
 }
 
 .latest-news p {
@@ -93,7 +95,7 @@
 
 /* Card Styles for All Sections */
 .card {
-    background-color: #fff;
+    /* color: #333; */
     padding: 25px;
     border-radius: 10px;
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
