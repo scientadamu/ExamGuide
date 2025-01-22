@@ -1,415 +1,149 @@
-/* ============================================================
-   Global Reset: Ensures consistent styling across browsers
-   ============================================================ */
-   * {
+/* Global Styles */
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* ============================================================
-   Body Styling: Sets basic layout and background
-   ============================================================ */
-body {
-    font-family: Arial, sans-serif;
-    display: flex;
-    height: 100vh;
-    background-color: #f4f4f9;
-}
-
-/* ============================================================
-   Sidebar Styling: Fixed sidebar with navigation links
-   ============================================================ */
+/* Sidebar Styles */
 .sidebar {
     width: 250px;
-    background: #002147;
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    height: 100vh; /* Full height */
+    background-color: #002147;
+    color: white;
     position: fixed;
     top: 0;
     left: 0;
-    transition: transform 0.3s ease;
+    bottom: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
 }
 
 .sidebar h2 {
-    margin-bottom: 20px;
     text-align: center;
-    font-size: 24px;
+    margin-bottom: 20px;
 }
 
 .sidebar a {
-    color: #fff;
+    color: white;
     text-decoration: none;
     margin: 10px 0;
     padding: 10px;
+    background-color: #003366;
     border-radius: 5px;
-    display: block;
-    background: #003366;
     cursor: pointer;
-    transition: background 0.3s ease;
+    transition: background-color 0.3s ease;
 }
 
 .sidebar a:hover {
-    background: #00509E;
+    background-color: #00509E;
 }
 
-/* ============================================================
-   Dashboard Styling: Main content area with dynamic loading
-   ============================================================ */
-   .dashboard .header {
-    background: #00509E;
-    color: #fff;
+/* Main Content Styles */
+.main-content {
+    /* background: red; */
+    margin-left: 250px;
     padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 20px;
+    margin-top: 100px; /* To avoid overlap with fixed header */
+}
+
+.header {
+    background-color: #00509E;
+    color: white;
+    padding: 20px;
     text-align: center;
     position: fixed;
     top: 0;
     left: 250px;
     right: 0;
     z-index: 10;
+    width: calc(100% - 250px);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: calc(100% - 250px); /* To fill the rest of the width */
-    height: 80px; /* Fixed height for the header */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
-    font-size: 20px;
 }
 
-/* ============================================================
-   Content Section Styling: Displaying dynamic content
-   ============================================================ */
-.dashboard .content {
+.content {
+    margin-top: 0px;
+    padding: 20px;
     background-color: #fff;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin-top: 100px; /* To avoid overlap with fixed header */
-}
-
-/* ============================================================
-   Mobile Responsiveness
-   ============================================================ */
-@media (max-width: 768px) {
-    .sidebar {
-        width: 100%;
-        height: auto;
-        position: fixed;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        transition: transform 0.3s ease;
-    }
-
-    .dashboard {
-        margin-left: 0;
-        padding: 10px;
-    }
-
-    .sidebar.open {
-        transform: translateX(0); /* Show sidebar when toggled */
-    }
-
-    .dashboard .header {
-        left: 0;
-        width: 100%;
-    }
-}
-
-/* ============================================================
-   Course List Styling: Display courses in a grid
-   ============================================================ */
-.dashboard .course-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    margin-top: 30px;
-}
-
-/* ============================================================
-   Individual Course Card Styling: Each course card in the list
-   ============================================================ */
-.dashboard .course-card {
-    background: #fff;
-    padding: 20px;
-    border: 1px solid #ddd;
+    /* background-color: blue; */
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+}
+
+/* Footer Styles */
+.footer {
     text-align: center;
-}
-
-.dashboard .course-card h3 {
-    font-size: 22px;
-    color: #333;
-}
-
-.dashboard .course-card button {
-    background: #00509E;
-    color: #fff;
-    padding: 12px;
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    font-size: 16px;
-}
-
-.dashboard .course-card button:hover {
-    background: #002147;
-}
-
-/* ============================================================
-   Topic List Styling: Display list of topics within a course
-   ============================================================ */
-.topics {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    justify-content: center;
-    margin-top: 20px;
-}
-
-.topic-card {
-    background-color: #ecf0f1;
-    padding: 18px;
-    border-radius: 6px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 220px;
-    cursor: pointer;
-    font-size: 18px;
-    text-align: center;
-    transition: transform 0.3s ease, background-color 0.3s ease;
-}
-
-.topic-card:hover {
-    background-color: #dfe6e9;
-    transform: scale(1.05);
-}
-
-/* ============================================================
-   Topic Details Styling: Detailed view for each topic
-   ============================================================ */
-.topic-details {
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    margin-top: 30px;
-}
-
-.topic-details h2 {
-    font-size: 28px;
-    color: #2c3e50;
-}
-
-.topic-details p {
-    font-size: 18px;
-    color: #7f8c8d;
-}
-
-.topic-details ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.topic-details li {
-    background-color: #f7f7f7;
-    margin: 8px 0;
-    padding: 12px;
-    border-radius: 4px;
-    font-size: 16px;
-    color: #2c3e50;
-}
-
-/* ============================================================
-   Footer Styling: Simple footer for the page
-   ============================================================ */
-footer {
-    margin-top: 20px;
-    text-align: center;
-    color: #888;
-    font-size: 16px;
-}
-
-/* ============================================================
-   General Button Styling
-   ============================================================ */
-button {
-    background-color: #27ae60;
-    padding: 12px;
-    font-size: 18px;
+    background-color: #002147;
     color: white;
-    border: none;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-}
-
-button:hover {
-    background-color: #2ecc71;
-}
-
-/* ============================================================
-   Course Details Styling: Section displaying detailed course info
-   ============================================================ */
-.course-details {
-    background-color: #f9f9f9;
     padding: 20px;
-    margin-top: 10px;
-    border-radius: 8px;
-    border: 1px solid #ddd;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    display: none; /* Initially hidden until clicked */
-}
-
-/* ============================================================
-   Topic Container Styling: Container for individual topics
-   ============================================================ */
-.topic {
-    margin-bottom: 20px;
-    padding: 20px;
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-}
-
-.topic:hover {
-    background-color: #f1f1f1;
-    transform: translateY(-5px);
-}
-
-/* ============================================================
-   Topic Title Styling: Title for each topic in the list
-   ============================================================ */
-.topic h4 {
-    font-size: 30px;
-    color: #2c3e50;
-    margin-bottom: 10px;
-    font-weight: bold;
-}
-
-/* ============================================================
-   Topic Explanation Styling: Explanation for each topic
-   ============================================================ */
-.topic p {
-    font-size: 25px;
-    color: #555;
-    line-height: 1.7;
-    margin-bottom: 15px;
-}
-
-/* ============================================================
-   Questions Section Styling: Styling for the list of questions
-   ============================================================ */
-.topic h5 {
-    font-size: 22px;
-    color: #34495e;
     margin-top: 20px;
-    font-weight: bold;
+}
+/* Inside Dashboard.css or your global styles */
+
+/* Home Content Styles */
+.home-content {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.topic ul {
-    padding-left: 20px;
-    margin-top: 10px;
-}
-
-.topic ul li {
-    font-size: 20px;
+.welcome-message h2 {
+    font-size: 32px;
     color: #333;
-    line-height: 1.6;
-    margin-bottom: 8px;
 }
 
-/* Custom Bullets for Questions */
-.topic ul li::before {
-    content: "•";
-    color: #3498db; /* Blue bullet points */
-    margin-right: 10px;
+.welcome-message p {
+    font-size: 18px;
+    color: #555;
 }
 
-/* ============================================================
-   Hidden Elements Styling: For elements that are initially hidden
-   ============================================================ */
-.hidden {
-    display: none;
+.latest-news {
+    margin-top: 20px;
+    background-color: #f1f1f1;
+    padding: 15px;
+    border-radius: 8px;
 }
 
-/* ============================================================
-   Mobile Responsiveness: Adapt styles for smaller screens
-   ============================================================ */
-@media (max-width: 768px) {
-    /* Sidebar Styling */
-    .sidebar {
-        width: 100%;
-        height: auto;
-        position: absolute;
-        top: 0;
-        left: -250px; /* Initially hidden on mobile */
-        transition: transform 0.3s ease;
-    }
-
-    .sidebar a {
-        font-size: 16px;
-    }
-
-    .dashboard {
-        margin-left: 0; /* Reset for mobile */
-        padding: 10px;
-    }
-
-    .sidebar.open {
-        left: 0; /* Show sidebar when toggled */
-    }
-
-    /* Hamburger menu to toggle sidebar visibility */
-    .hamburger-menu {
-        display: block;
-        position: fixed;
-        top: 20px;
-        left: 20px;
-        z-index: 10;
-        cursor: pointer;
-        background-color: #003366;
-        padding: 10px;
-        border-radius: 5px;
-    }
-
-    .hamburger-menu div {
-        width: 30px;
-        height: 4px;
-        background-color: white;
-        margin: 6px 0;
-        transition: transform 0.3s ease;
-    }
-
-    /* Course Card Adjustment for smaller screens */
-    .dashboard .course-list {
-        grid-template-columns: 1fr; /* Show as single column on mobile */
-    }
-
-    .topic-card {
-        width: 100%; /* Full width on smaller screens */
-    }
-
-    /* Topic and Question styling for mobile */
-    .topic h4 {
-        font-size: 26px;
-    }
-
-    .topic p {
-        font-size: 20px;
-    }
-
-    .topic ul li {
-        font-size: 18px;
-    }
+.latest-news h3 {
+    font-size: 24px;
+    color: #333;
 }
 
+.latest-news ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.latest-news ul li {
+    font-size: 16px;
+    color: #555;
+    padding: 5px 0;
+}
+
+.home-sections {
+    margin-top: 40px;
+}
+
+.home-sections .section {
+    margin-bottom: 30px;
+}
+
+.home-sections h3 {
+    font-size: 26px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Logout Message Styles */
+.logout-message {
+    background-color: #f44336; /* Red background */
+    color: white;
+    padding: 15px;
+    margin-top: 20px;
+    text-align: center;
+    font-size: 16px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: opacity 0.3s ease;
+}

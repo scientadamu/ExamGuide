@@ -13,6 +13,10 @@ function LandingPage() {
   const [showLogin, setShowLogin] = useState(true);
   const [showForgotPassword, setShowForgotPassword] = useState(false);
   const [showSignUp, setShowSignUp] = useState(false);
+  const [matricNumber, setMatricNumber] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
 
   const slideImages = [
@@ -48,7 +52,27 @@ function LandingPage() {
     alert('Your message has been sent!');
   };
 
-  // Toggle between login, signup, and forgot password forms
+  const handleSignUpSubmit = (e) => {
+    e.preventDefault();
+
+    // Validate Matric Number format
+    const matricNumberRegex = /^[A-Za-z]{3}\/25\/[A-Za-z]{3}\/\d{3}$/;
+    if (!matricNumberRegex.test(matricNumber)) {
+      setErrorMessage('Matric number should be in the format NUM/25/DTP/012');
+      return;
+    }
+
+    // Validate Password Confirmation
+    if (password !== confirmPassword) {
+      setErrorMessage('Passwords do not match');
+      return;
+    }
+
+    setErrorMessage('');
+    alert('Registration Successful!');
+    // Add further registration logic here
+  };
+
   const showForgotPasswordForm = () => {
     setShowLogin(false);
     setShowForgotPassword(true);
@@ -67,7 +91,6 @@ function LandingPage() {
     setShowSignUp(false);
   };
 
-  // Navigate to the previous or next slide manually
   const handlePrevSlide = () => {
     setSlideIndex((prev) => (prev - 1 + slideImages.length) % slideImages.length);
   };
@@ -208,22 +231,43 @@ function LandingPage() {
         {showSignUp && (
           <div className="form-container" id="signup-container">
             <h3>Register</h3>
-            <form>
+            <form onSubmit={handleSignUpSubmit}>
+              <input
+                type="text"
+                placeholder="Matric Number (NUM/25/DTP/012)"
+                required
+                value={matricNumber}
+                onChange={(e) => setMatricNumber(e.target.value)}
+              />
+              <input
+                type="text"
+                placeholder="Phone Number"
+                required
+                value={phoneNumber}
+                onChange={(e) => setPhoneNumber(e.target.value)}
+              />
               <input
                 type="email"
                 placeholder="Email Address"
                 required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
               <input
                 type="password"
                 placeholder="Password"
                 required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
               <input
                 type="password"
                 placeholder="Confirm Password"
                 required
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
               />
+              {errorMessage && <div className="error-message">{errorMessage}</div>}
               <button type="submit">Register</button>
             </form>
             <p>
